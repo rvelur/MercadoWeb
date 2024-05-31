@@ -1,0 +1,139 @@
+<nav class="navbar bg-success">
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="container-cart py-5">
+            <button id="cartShop" type="button" class="btn btn-success carrito" data-bs-toggle="modal"
+                data-bs-target="#exampleModal" onclick="addModal()">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+{{!-- Modal carrito --}}
+
+<div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Productos Seleccionados</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul id="productos">
+
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .carrito {
+        border: none;
+        background: none;
+    }
+
+    .fa-cart-shopping {
+        font-size: 50px;
+        color: coral;
+    }
+
+    .modal-content {
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+        background-color: #28a745;
+        color: white;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .modal-title {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .btn-close {
+        background-color: transparent;
+        border: none;
+        font-size: 20px;
+        color: white;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    #productos {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    #productos li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #productos li img {
+        width: 50px;
+        height: 50px;
+        margin-right: 15px;
+        border-radius: 5px;
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .modal-footer .btn {
+        border-radius: 50px;
+        padding: 10px 20px;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+    }
+
+    .btn-secondary:hover {
+        background-color: #7e4e41;
+    }
+</style>
+
+<script>
+
+    let carrito = [];
+
+    function addModal(){
+        let lista = "";
+        let totalCantidad = 0;
+        for (item of carrito) {
+            lista += `
+            <li>
+                <span>${item.nombre}</span>
+                <img src="${item.img}" alt="">
+                <span>Cantidad: ${item.cantidad}</span>
+            </li>
+            `;
+            totalCantidad += item.cantidad;
+        };
+
+        document.getElementById("productos").innerHTML = lista;
+    }
+
+    
+
+</script>

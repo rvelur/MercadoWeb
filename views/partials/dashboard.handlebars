@@ -1,0 +1,46 @@
+<div class="galeria-productos py-3 row">
+
+    {{#each productos}}
+        <div class="contenedor-producto col-12 col-sm-6 col-md-4" data-nombre="{{this.nombre}}" id="producto{{this.id}}">
+
+            <p class="titulo-imagen fs-2">{{this.nombre}}</p>
+            <img src="{{this.img}}" alt="{{this.nombre}}" class="d-block mx-auto">
+            <button class="btn btn-success" onclick="agregarAlCarrito('{{this.id}}', '{{this.nombre}}', '{{this.img}}')">Comprar</button>
+
+        </div>
+    {{/each}}
+
+</div>
+
+<style>
+    .contenedor-producto img {
+        width: 80%;
+        max-height: 130px;
+        max-width: 130px;
+    }
+
+    .titulo-imagen {
+        color: gray;
+    }
+</style>
+
+<script>
+
+    function agregarAlCarrito(id, nombre, img, cantidad = 1,) {
+        console.log(id, nombre, img, cantidad,)
+
+        let item = {
+            id, nombre, img, cantidad,
+        };
+        let producto = carrito.find(item => item.id === id)
+            if (producto) {
+                producto.cantidad += cantidad;
+                alert('La cantidad del producto en el carrito ha sido actualizada')
+            } else {
+                carrito.push(item);
+                console.log(carrito);
+                document.getElementById(`producto${id}`).style.opacity = "0.5";
+            }
+    }
+
+</script>
